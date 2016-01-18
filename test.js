@@ -10,24 +10,24 @@ function simpleEventEmitter() {
 	const ev = new EventEmitter();
 	setTimeout(() => {
 		ev.emit('end', 'value');
-	}, 100);
+	}, 10);
 	return ev;
 }
 
 function dataEventEmitter() {
 	const ev = new EventEmitter();
 	setTimeout(() => { ev.emit('data', 0); }, 0);
-	setTimeout(() => { ev.emit('data', 1); }, 100);
-	setTimeout(() => { ev.emit('data', 2); }, 200);
-	setTimeout(() => { ev.emit('data', 3); }, 300);
-	setTimeout(() => { ev.emit('data', 4); }, 400);
-	setTimeout(() => { ev.emit('end', 'done'); }, 500);
+	setTimeout(() => { ev.emit('data', 1); }, 10);
+	setTimeout(() => { ev.emit('data', 2); }, 20);
+	setTimeout(() => { ev.emit('data', 3); }, 30);
+	setTimeout(() => { ev.emit('data', 4); }, 40);
+	setTimeout(() => { ev.emit('end', 'done'); }, 50);
 	return ev;
 }
 
 function errorEmitter() {
 	const ev = new EventEmitter();
-	setTimeout(() => { ev.emit('error', new Error()); }, 100);
+	setTimeout(() => { ev.emit('error', new Error()); }, 10);
 	return ev;
 }
 
