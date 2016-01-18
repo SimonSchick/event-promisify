@@ -31,6 +31,26 @@ function errorEmitter() {
 	return ev;
 }
 
+describe('export', () => {
+	it('Correctly makes the function use the given promise implementation', () => {
+		const MyPromiseImp = class MyPromiseImp extends Promise {
+		};
+		const otherPromisifyEvent = require('./index.js')(MyPromiseImp);
+		assert(
+			otherPromisifyEvent(simpleEventEmitter(), 'end') instanceof MyPromiseImp,
+			'Wrong promise implemetation'
+		);
+	});
+
+	it('Defaults to the native promise implementation', () => {
+		assert(
+			promisifyEvent(simpleEventEmitter(), 'end') instanceof Promise,
+			'Wrong promise implementation'
+		);
+	});
+});
+
+
 describe('promisifyEvent', () => {
 	it('Functions with the second argument being a string', () =>
 		promisifyEvent(simpleEventEmitter(), 'end')
