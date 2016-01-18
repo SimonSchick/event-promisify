@@ -4,7 +4,7 @@
   "description": "Promisification for EventEmitters.",
   "main": "index.js",
   "scripts": {
-    "test": "moch test.js"
+    "test": "./node_modules/mocha/bin/mocha test.js"
   },
   "keywords": [
     "promise",
