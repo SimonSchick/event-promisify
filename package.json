@@ -1,0 +1,23 @@
+{
+  "name": "event-promisify",
+  "version": "0.0.0",
+  "description": "Promisification for EventEmitters.",
+  "main": "index.js",
+  "scripts": {
+    "test": "moch test.js"
+  },
+  "keywords": [
+    "promise",
+    "event",
+    "eventemitter",
+    "promisify"
+  ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "author": "Simon Schick <demwizzy@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^2.3.4"
+  }
+}
