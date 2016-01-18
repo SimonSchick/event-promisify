@@ -16,7 +16,7 @@ of error events and is promise library agnostic (defaults to native/global Promi
 ## Examples
 
 ```javascript
-const promisifyEvent = require('event-promisify')(YOUR_PROMISE_IMPLEMENTATION_HERE);
+const promisifyEvent = require('event-promisify')(YOUR_PROMISE_CONSTRUCTOR_HERE);
 
 promisifyEvent(someEventEmitter, 'someEvent')
 .then(...)
