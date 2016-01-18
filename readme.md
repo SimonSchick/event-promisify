@@ -10,8 +10,8 @@ Just run ```npm install event-promisify```
 
 # documentation
 
-This implementation supports basic promisification, event filtering, aggregation and custom specification
-of error events.
+This implementation supports basic promisification, event filtering, aggregation, custom specification
+of error events and is promise library agnostic (defaults to native/global Promise object).
 
 ## Examples
 
