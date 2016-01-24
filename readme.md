@@ -1,3 +1,20 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [event-promisify](#event-promisify)
+- [Documentation](#documentation)
+  - [Errors](#errors)
+  - [Multiple emitted values](#multiple-emitted-values)
+  - [Examples](#examples)
+    - [Simple promisification](#simple-promisification)
+    - [Event filtering](#event-filtering)
+    - [Event aggregation](#event-aggregation)
+    - [Custom termination event](#custom-termination-event)
+    - [Ignore errors](#ignore-errors)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # event-promisify
 
 [![NPM](https://nodei.co/npm/event-promisify.png)](https://nodei.co/npm/event-promisify/)
