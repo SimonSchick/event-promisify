@@ -6,6 +6,7 @@
  * @property {!boolean function(data: *)} filter [description]
  * @property {boolean} aggregate If set, it will aggregate the data from the specified event.
  * @property {string} errorName The event to be used to abort/reject the promise in addition to error.
+ * @property {boolean} [ignoreErrors=false] Should the default error handler be ignored.
  */
 
 /**
@@ -29,6 +30,7 @@ module.exports = Promise => function promisifyEvent(obj, nameOrOptions) {
 	const aggregateEventName = nameOrOptions.aggregate;
 	const eventName = typeof nameOrOptions === 'string' ? nameOrOptions : nameOrOptions.name;
 	const errorEvent = nameOrOptions.errorName;
+	const ignoreErrors = nameOrOptions.ignoreErrors;
 	let aggregated;
 	let aggregateEventHandle;
 	if (aggregateEventName) {
@@ -79,7 +81,12 @@ module.exports = Promise => function promisifyEvent(obj, nameOrOptions) {
 			obj.once(eventName, succHandler);
 		}
 
-		obj.once('error', errorHandler);
+		obj.once('error', error => {
+			if (ignoreErrors) {
+				return;
+			}
+			errorHandler(error);
+		});
 		if (errorEvent) {
 			obj.once(errorEvent, errorHandler);
 		}

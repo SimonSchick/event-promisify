@@ -27,7 +27,8 @@ function dataEventEmitter() {
 
 function errorEmitter() {
 	const ev = new EventEmitter();
-	setTimeout(() => { ev.emit('error', new Error()); }, 10);
+	setTimeout(() => ev.emit('error', new Error()), 10);
+	setTimeout(() => ev.emit('end'), 20);
 	return ev;
 }
 
@@ -126,5 +127,12 @@ describe('promisifyEvent', () => {
 			() => assert(false, 'Should not resolve'),
 			error => assert(error.event.boop, 'Object should be there')
 		)
+	);
+
+	it('Ignores the error event when ignoreErrors is set', () =>
+		promisifyEvent(errorEmitter(), {
+			name: 'end',
+			ignoreErrors: true
+		})
 	);
 });
