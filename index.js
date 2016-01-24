@@ -54,6 +54,15 @@ module.exports = Promise => function promisifyEvent(obj, nameOrOptions) {
 			return resolve(data);
 		};
 		const errorHandler = error => {
+			if (!(error instanceof Error)) {
+				if (typeof error === 'string') {
+					error = new Error(error);
+				} else {
+					const tempError = new Error('Error event emitted, event contained in .event');
+					tempError.event = error;
+					error = tempError;
+				}
+			}
 			if (aggregateEventName) {
 				obj.removeListener(aggregateEventName, aggregateEventHandle);
 			}

@@ -31,6 +31,12 @@ function errorEmitter() {
 	return ev;
 }
 
+function errorEmitterCustom() {
+	const ev = new EventEmitter();
+	setTimeout(() => { ev.emit('error2', {boop: true}); }, 10);
+	return ev;
+}
+
 describe('export', () => {
 	it('Correctly makes the function use the given promise implementation', () => {
 		const MyPromiseImp = class MyPromiseImp extends Promise {
@@ -86,7 +92,7 @@ describe('promisifyEvent', () => {
 		promisifyEvent(errorEmitter(), {name: 'end'})
 		.then(
 			() => assert(false, 'Should not resolve'),
-			() => { /* do nothing */ }
+			error => assert(error instanceof Error, 'Should be instanceof error')
 		)
 	);
 
@@ -98,6 +104,27 @@ describe('promisifyEvent', () => {
 		.then(
 			() => assert(false, 'Should not resolve'),
 			() => { /* do nothing */ }
+		)
+	);
+
+	it('Wraps a error string into an error object with the string being the message', () =>
+		promisifyEvent(dataEventEmitter(), {
+			errorName: 'end'
+		})
+		.then(
+			() => assert(false, 'Should not resolve'),
+			error => assert(error.message === 'done', 'Message should be emitted value')
+		)
+	);
+
+	it('Wraps a non error and non string error object into an error object and adds the event as a property', () =>
+		promisifyEvent(errorEmitterCustom(), {
+			name: 'end',
+			errorName: 'error2'
+		})
+		.then(
+			() => assert(false, 'Should not resolve'),
+			error => assert(error.event.boop, 'Object should be there')
 		)
 	);
 });
