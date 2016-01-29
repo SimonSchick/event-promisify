@@ -6,6 +6,10 @@
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SimonSchick/event-promisify.git"
+  },
   "keywords": [
     "promise",
     "event",
@@ -17,6 +21,9 @@
   },
   "author": "Simon Schick <demwizzy@gmail.com>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SimonSchick/event-promisify/issues"
+  },
   "devDependencies": {
     "mocha": "^2.3.4"
   }
